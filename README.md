@@ -45,4 +45,4 @@ O projeto adota uma arquitetura dividida em duas camadas principais:
 
 1. **Clone o repositório:**
    ```bash
-   git clone [https://github.com/Almeida-richardfelix/flex-pdv.git](https://github.com/Almeida-richardfelix/flex-pdv.git)
+   git clone [https://github.com/Almeida-richardfelix/flex-pdv.git]
