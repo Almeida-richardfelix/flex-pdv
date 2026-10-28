@@ -25,6 +25,7 @@ O projeto adota uma arquitetura dividida em duas camadas principais:
 - [ ] Cancelamento de itens individuais ou da venda (cupom) completa.
 
 ### 3. Retaguarda e Estoque
+- [x] Cadastro e consulta de produtos por ID interno ou SKU/EAN.
 - [ ] Baixa atômica de estoque (Garantia transacional `@Transactional`: o produto só é descontado se o pagamento for concluído com sucesso).
 - [ ] Bloqueio e tratamento de exceção para vendas com saldo de estoque insuficiente.
 
@@ -41,8 +42,33 @@ O projeto adota uma arquitetura dividida em duas camadas principais:
 - HTML5, CSS3, JavaScript (Vanilla)
 - Integração via Fetch API
 
-## ⚙️ Como Executar o Projeto localmente
+## ⚙️ Como Executar o Backend localmente
 
-1. **Clone o repositório:**
+Pré-requisitos: Java 17+, Maven 3.9+ e Docker Compose.
+
+1. Inicie o MySQL:
    ```bash
-   git clone [https://github.com/Almeida-richardfelix/flex-pdv.git]
+   docker compose up -d mysql
+   ```
+2. Execute a API:
+   ```bash
+   cd backend
+   mvn spring-boot:run
+   ```
+   A API ficará disponível em `http://localhost:8080`.
+
+### API de produtos
+
+- `POST /api/produtos`: cadastra um produto. Exemplo de corpo:
+  ```json
+  {
+    "code": "7891234567890",
+    "name": "Café",
+    "price": 12.50,
+    "stock": 8
+  }
+  ```
+- `GET /api/produtos/{id}`: consulta pelo ID interno.
+- `GET /api/produtos/codigo/{code}`: consulta pelo SKU/EAN.
+
+As credenciais do MySQL no Compose são somente para desenvolvimento local. Para outra configuração, defina `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER` e `DB_PASSWORD`.

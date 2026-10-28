@@ -1,0 +1,20 @@
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: flex_pdv
+      MYSQL_USER: flex_pdv
+      MYSQL_PASSWORD: flex_pdv_dev
+      MYSQL_ROOT_PASSWORD: flex_pdv_root_dev
+    ports:
+      - "3306:3306"
+    volumes:
+      - flex-pdv-mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  flex-pdv-mysql:

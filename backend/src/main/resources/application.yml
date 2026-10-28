@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:flex_pdv}?createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: ${DB_USER:flex_pdv}
+    password: ${DB_PASSWORD:flex_pdv_dev}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
